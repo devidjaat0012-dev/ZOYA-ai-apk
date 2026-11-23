@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Subtle outer orbital halo -->
+    <path
+        android:pathData="M54,20 A34,34 0 1,1 53.99,20 Z"
+        android:strokeWidth="1.8"
+        android:strokeAlpha="0.35">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="20"
+                android:startY="20"
+                android:endX="88"
+                android:endY="88"
+                android:type="linear">
+                <item android:offset="0" android:color="#EC4899" />
+                <item android:offset="0.5" android:color="#8B5CF6" />
+                <item android:offset="1" android:color="#06B6D4" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- AI 4-point sparkle star -->
+    <path
+        android:pathData="M54,28 C54,42 66,54 80,54 C66,54 54,66 54,80 C54,66 42,54 28,54 C42,54 54,42 54,28 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="30"
+                android:endX="78"
+                android:endY="78"
+                android:type="linear">
+                <item android:offset="0" android:color="#EC4899" />
+                <item android:offset="0.5" android:color="#8B5CF6" />
+                <item android:offset="1" android:color="#06B6D4" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Center core light -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,50 A4,4 0 1,1 53.99,50 Z" />
+</vector>

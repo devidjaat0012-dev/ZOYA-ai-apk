@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zoya AI</string>
+    <string name="service_wakeword_desc">Keeps Zoya wake-word listening ready when enabled by the user.</string>
+    <string name="wakeword_channel_name">Zoya Wake-Word Listener</string>
+    <string name="wakeword_notification_title">Zoya AI Voice Assistant</string>
+    <string name="wakeword_notification_text">Listening for your wake word</string>
+</resources>

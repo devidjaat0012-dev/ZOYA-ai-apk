@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private user profile and preferences for Zoya AI companion.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The authenticated Firebase user UID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Verified email address of the user.",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar URL of the user.",
+          "minLength": 0,
+          "maxLength": 1024
+        },
+        "personaVibe": {
+          "type": "string",
+          "description": "Preferred Zoya persona mode.",
+          "enum": ["girlfriend", "normal", "serious", "super_loyal"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was last updated."
+        }
+      },
+      "required": ["uid", "displayName", "email", "photoURL", "personaVibe", "createdAt", "updatedAt"]
+    },
+    "SavedMemory": {
+      "title": "SavedMemory",
+      "description": "A long-term memory item saved for a specific user.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Owner Firebase user UID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "fact": {
+          "type": "string",
+          "description": "The remembered fact or preference.",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "category": {
+          "type": "string",
+          "description": "Memory category.",
+          "enum": ["personal", "preference", "relationship", "goal", "work_study", "important"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Where the memory was captured from.",
+          "enum": ["chat", "live_voice", "manual"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the memory was created."
+        }
+      },
+      "required": ["uid", "fact", "category", "source", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Stores each authenticated user's private profile and preferences."
+    },
+    "/users/{userId}/memories/{memoryId}": {
+      "schema": {
+        "$ref": "#/entities/SavedMemory"
+      },
+      "description": "Stores long-term memories belonging to the user."
+    }
+  }
+}

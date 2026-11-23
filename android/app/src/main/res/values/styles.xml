@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Zoya" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/zoya_accent_pink</item>
+        <item name="colorPrimaryVariant">@color/zoya_accent_purple</item>
+        <item name="colorSecondary">@color/zoya_accent_cyan</item>
+        <item name="android:windowBackground">@color/zoya_bg_dark</item>
+        <item name="android:statusBarColor">@color/zoya_bg_dark</item>
+        <item name="android:navigationBarColor">@color/zoya_bg_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.Zoya.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/zoya_bg_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.Zoya</item>
+    </style>
+</resources>

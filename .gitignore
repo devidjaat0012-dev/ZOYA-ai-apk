@@ -1,0 +1,30 @@
+# Dependencies & Web Build Outputs
+node_modules/
+build/
+dist/
+dev-dist/
+coverage/
+
+# Environment & Secrets (never commit API keys or signing secrets)
+.env
+.env.*
+!.env.example
+
+# Android Build Outputs & Synced Assets
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/**/*.apk
+android/**/*.aab
+android/**/*.ap_
+android/app/src/main/assets/www/
+*.jks
+*.keystore
+
+# IDE & OS
+.DS_Store
+.idea/
+*.iml
+*.log
+.zoya-published-sites.json

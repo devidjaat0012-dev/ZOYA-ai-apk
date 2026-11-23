@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Glow -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a0314" stop-opacity="1" />
+      <stop offset="70%" stop-color="#040108" stop-opacity="1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="1" />
+    </radialGradient>
+
+    <!-- Core Plasma Gradient -->
+    <radialGradient id="corePlasma" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="25%" stop-color="#f472b6" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#ec4899" stop-opacity="0.8" />
+      <stop offset="80%" stop-color="#8b5cf6" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Outer Ring Gradient -->
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="35%" stop-color="#ec4899" />
+      <stop offset="70%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Waveform Glow Filter -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="ambientCoreBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Cyber Dark Base -->
+  <circle cx="200" cy="200" r="198" fill="url(#bgGlow)" />
+
+  <!-- Outer Orbital Segmented Telemetry Ring -->
+  <circle cx="200" cy="200" r="176" fill="none" stroke="url(#ringGradient)" stroke-width="2.5" stroke-dasharray="14 10 32 8 8 8" opacity="0.65" filter="url(#neonGlow)" />
+  <circle cx="200" cy="200" r="162" fill="none" stroke="#06b6d4" stroke-width="1.2" stroke-dasharray="4 16" opacity="0.45" />
+
+  <!-- Outer Pulse Halo -->
+  <circle cx="200" cy="200" r="135" fill="none" stroke="url(#ringGradient)" stroke-width="1.8" opacity="0.5" />
+
+  <!-- Glowing Core Nebula Blur -->
+  <circle cx="200" cy="200" r="95" fill="url(#corePlasma)" filter="url(#ambientCoreBlur)" opacity="0.85" />
+
+  <!-- Geometric Soundwave Equalizer Cross Ribbons -->
+  <g filter="url(#neonGlow)" opacity="0.9">
+    <!-- Horizontal Sound Wave -->
+    <path d="M 60 200 Q 110 160, 150 200 T 200 200 T 250 200 T 290 200 T 340 200" fill="none" stroke="#38bdf8" stroke-width="2.2" opacity="0.75" />
+    <path d="M 75 200 Q 120 235, 160 200 T 200 200 T 240 200 T 280 200 T 325 200" fill="none" stroke="#f472b6" stroke-width="2" opacity="0.85" />
+
+    <!-- Center Radiant Frequency Bars -->
+    <line x1="160" y1="175" x2="160" y2="225" stroke="#ec4899" stroke-width="3" stroke-linecap="round" />
+    <line x1="175" y1="155" x2="175" y2="245" stroke="#f43f5e" stroke-width="3" stroke-linecap="round" />
+    <line x1="190" y1="135" x2="190" y2="265" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="200" y1="120" x2="200" y2="280" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+    <line x1="210" y1="135" x2="210" y2="265" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="225" y1="155" x2="225" y2="245" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" />
+    <line x1="240" y1="175" x2="240" y2="225" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Glowing Central Core Sphere -->
+  <circle cx="200" cy="200" r="48" fill="url(#corePlasma)" filter="url(#neonGlow)" />
+  <circle cx="190" cy="190" r="16" fill="#ffffff" opacity="0.7" />
+
+  <!-- Orbital Cyber Satellite Nodes -->
+  <circle cx="376" cy="200" r="4" fill="#38bdf8" filter="url(#neonGlow)" />
+  <circle cx="200" cy="24" r="3.5" fill="#f43f5e" filter="url(#neonGlow)" />
+  <circle cx="75" cy="75" r="3" fill="#a855f7" filter="url(#neonGlow)" />
+  <circle cx="325" cy="325" r="3" fill="#ec4899" filter="url(#neonGlow)" />
+  <circle cx="24" cy="200" r="4" fill="#f472b6" filter="url(#neonGlow)" />
+
+  <!-- HUD Telemetry Text -->
+  <text x="200" y="360" text-anchor="middle" fill="#f472b6" font-family="monospace" font-size="10" font-weight="bold" letter-spacing="4" opacity="0.8">ZOYA // NEURAL CORE</text>
+</svg>
