@@ -115,10 +115,13 @@ jobs:
           OUT_DIR="android-dist"
           mkdir -p "$OUT_DIR"
           APK_FILENAME="zoya-ai-debug-build-${{ github.run_number }}.apk"
+          STABLE_APK_FILENAME="zoya-ai-voice-assistant.apk"
           cp "$SELECTED_APK" "${OUT_DIR}/${APK_FILENAME}"
+          cp "$SELECTED_APK" "${OUT_DIR}/${STABLE_APK_FILENAME}"
 
           echo "Verified APK: $SELECTED_APK ($APK_SIZE)"
           echo "apk_path=${OUT_DIR}/${APK_FILENAME}" >> "$GITHUB_OUTPUT"
+          echo "stable_apk_path=${OUT_DIR}/${STABLE_APK_FILENAME}" >> "$GITHUB_OUTPUT"
           echo "apk_name=${APK_FILENAME}" >> "$GITHUB_OUTPUT"
           echo "apk_size=${APK_SIZE}" >> "$GITHUB_OUTPUT"
 
@@ -214,7 +217,7 @@ jobs:
 
       - name: Publish APK & AAB to GitHub Releases
         id: publish_release
-        if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish_release == 'true'))
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish_release == 'true'))
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -226,7 +229,7 @@ jobs:
             TAG_NAME="v1.0.${{ github.run_number }}"
           fi
 
-          RELEASE_ASSETS="${{ steps.verify_apk.outputs.apk_path }}"
+          RELEASE_ASSETS="${{ steps.verify_apk.outputs.apk_path }} ${{ steps.verify_apk.outputs.stable_apk_path }}"
           if [ -n "${{ steps.verify_release.outputs.release_apk_path }}" ] && [ -f "${{ steps.verify_release.outputs.release_apk_path }}" ]; then
             RELEASE_ASSETS="$RELEASE_ASSETS ${{ steps.verify_release.outputs.release_apk_path }}"
           fi
@@ -239,7 +242,7 @@ jobs:
           else
             gh release create "$TAG_NAME" $RELEASE_ASSETS \
               --title "Zoya AI Voice Assistant ($TAG_NAME)" \
-              --notes "Automated Android APK + Google Play App Bundle (.aab) build #$GITHUB_RUN_NUMBER from commit ${GITHUB_SHA::7}. Download \`.apk\` for direct mobile testing or \`.aab\` for Google Play Console." \
+              --notes "Automated Android APK + Google Play App Bundle (.aab) build #$GITHUB_RUN_NUMBER from commit ${GITHUB_SHA::7}. Download \`zoya-ai-voice-assistant.apk\` for direct mobile testing or \`.aab\` for Google Play Console." \
               --latest
           fi
 

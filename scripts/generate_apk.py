@@ -21,9 +21,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
 PUBLIC_DIR = os.path.join(PROJECT_DIR, "public")
 SRC_DIR = os.path.join(PROJECT_DIR, "src")
+APK_DIR = os.path.join(PROJECT_DIR, "apk")
 BASE_TEMPLATE = os.path.join(BASE_DIR, "base_template.apk")
 OUTPUT_APK = os.path.join(PUBLIC_DIR, "zoya-ai-voice-assistant.apk")
 SRC_OUTPUT_APK = os.path.join(SRC_DIR, "zoya-ai-voice-assistant.apk")
+REPO_OUTPUT_APK = os.path.join(APK_DIR, "zoya-ai-voice-assistant.apk")
 TEMP_UNSIGNED = os.path.join(PUBLIC_DIR, "unsigned_zoya.apk")
 SIGN_SCRIPT = os.path.join(BASE_DIR, "sign_apk.mjs")
 
@@ -265,6 +267,10 @@ def build_apk():
     os.makedirs(SRC_DIR, exist_ok=True)
     shutil.copy2(OUTPUT_APK, SRC_OUTPUT_APK)
     print(f"Copied signed APK to src folder: {SRC_OUTPUT_APK}")
+
+    os.makedirs(APK_DIR, exist_ok=True)
+    shutil.copy2(OUTPUT_APK, REPO_OUTPUT_APK)
+    print(f"Copied signed APK to git repository apk folder: {REPO_OUTPUT_APK}")
 
     final_size = os.path.getsize(OUTPUT_APK)
     final_mb = final_size / (1024 * 1024)

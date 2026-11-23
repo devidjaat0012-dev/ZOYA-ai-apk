@@ -28,7 +28,9 @@ All existing web features, UI themes, and Express backend APIs are preserved and
 │   ├── gradle.properties            # Configurable package ID, app name, version code/name
 │   ├── settings.gradle.kts
 │   └── gradle/wrapper/gradle-wrapper.properties
-├── public/                          # PWA icons, manifest assets
+├── apk/
+│   └── zoya-ai-voice-assistant.apk  # Ready-to-install signed APK tracked directly in Git repo
+├── public/                          # PWA icons, manifest assets, & testable APK copy
 ├── scripts/
 │   └── sync-android-assets.mjs      # Copies Vite dist/ -> android/app/src/main/assets/www/ & syncs icons
 ├── src/
@@ -67,11 +69,15 @@ All existing web features, UI themes, and Express backend APIs are preserved and
 ```bash
 git init
 git add .
-git commit -m "Prepare Zoya AI full-stack app with Android Gradle & GitHub Actions APK pipeline"
+git commit -m "Add Zoya AI full-stack app, signed APK, Android Gradle & GitHub Actions pipeline"
 git branch -M main
 git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git
 git push -u origin main
 ```
+
+Once pushed, anyone can download Zoya's APK directly from your Git repository using any of these links:
+- **Direct Raw Repo Link**: `https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/raw/main/apk/zoya-ai-voice-assistant.apk`
+- **Latest GitHub Release APK**: `https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/releases/latest/download/zoya-ai-voice-assistant.apk`
 
 ---
 
@@ -82,7 +88,7 @@ Every push to `main` (or `master`), tag push (`v*`), or manual **Run workflow** 
 1. Installs Node 20 dependencies (`npm ci`), runs `npm run lint`, builds `dist/` (`npm run build`), and syncs assets (`npm run android:sync`).
 2. Sets up JDK 17 (`temurin`), Android SDK, and Gradle `8.11.1`.
 3. Compiles Debug APK (`gradle :app:assembleDebug`) **and** Google Play App Bundle (`gradle :app:bundleRelease`) inside `android/`.
-4. Uploads both **`zoya-ai-android-apk`** (`.apk`) and **`zoya-ai-google-play-aab`** (`.aab`) as GitHub Actions Artifacts, and attaches them to GitHub Releases.
+4. Uploads both **`zoya-ai-android-apk`** (`.apk`) and **`zoya-ai-google-play-aab`** (`.aab`) as GitHub Actions Artifacts, and publishes `zoya-ai-voice-assistant.apk` + `.aab` to GitHub Releases.
 
 ### Option B: Local Build (Android Studio or CLI)
 Prerequisites: **JDK 17**, **Android SDK (API 35)**, **Gradle 8.11+**, and **Node.js 20+**.
@@ -118,7 +124,7 @@ Output locations:
 
 ## How to Build & Download from GitHub Releases
 
-GitHub Releases gives you direct `.apk` and `.aab` links:
+GitHub Releases gives you direct `.apk` and `.aab` links on every push to `main`/`master` or tag:
 
 ### Method 1: Push a Version Tag
 ```bash
@@ -133,7 +139,7 @@ git push origin v1.0.0
 
 ### Downloading the Release Files
 1. Open your GitHub repository and click **Releases** (right sidebar) or visit `https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/releases`.
-2. Under the latest release's **Assets**, download `zoya-ai-debug-build-<number>.apk` for phone testing or `zoya-ai-playstore-build-<number>.aab` for Google Play Console.
+2. Under the latest release's **Assets**, download `zoya-ai-voice-assistant.apk` (or `zoya-ai-debug-build-<number>.apk`) for phone testing or `zoya-ai-playstore-build-<number>.aab` for Google Play Console.
 
 ---
 

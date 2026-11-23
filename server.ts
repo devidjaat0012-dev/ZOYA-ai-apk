@@ -42,11 +42,18 @@ app.use("/api", (req, res, next) => {
 });
 
 // Direct mobile download routes for Zoya APK package
-app.get(["/zoya-ai-voice-assistant.apk", "/src/zoya-ai-voice-assistant.apk"], (_req, res) => {
-  const candidates = [
-    path.resolve(__dirname, "public", "zoya-ai-voice-assistant.apk"),
-    path.resolve(__dirname, "src", "zoya-ai-voice-assistant.apk"),
-  ];
+app.get(
+  [
+    "/zoya-ai-voice-assistant.apk",
+    "/src/zoya-ai-voice-assistant.apk",
+    "/apk/zoya-ai-voice-assistant.apk",
+  ],
+  (_req, res) => {
+    const candidates = [
+      path.resolve(__dirname, "apk", "zoya-ai-voice-assistant.apk"),
+      path.resolve(__dirname, "public", "zoya-ai-voice-assistant.apk"),
+      path.resolve(__dirname, "src", "zoya-ai-voice-assistant.apk"),
+    ];
   const apkFile = candidates.find((filePath) => fs.existsSync(filePath));
   if (!apkFile) {
     return res.status(404).json({ error: "APK package not found on server" });
